@@ -8,14 +8,66 @@ Variables
 @blue-2: #8dd5ff;
 @blue-3: #7fc2e8;
 @blue-4: #42baff;
+@blue-5: #3c5462;
+@blue-6: #002b44;
+@blue-7: #01446b;
 
 @yellow-1: #fff200;
+@yellow-2: #fdb913;
+
+/***************************
+****************************
+Fonts
+****************************
+***************************/
+
+@font-face {
+  font-family: 'verbsemibold';
+  src: url('../fonts/verbsemibold-webfont.eot');
+  src: url('../fonts/verbsemibold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/verbsemibold-webfont.woff2') format('woff2'),
+  url('../fonts/verbsemibold-webfont.woff') format('woff'),
+  url('../fonts/verbsemibold-webfont.ttf') format('truetype'),
+  url('../fonts/verbsemibold-webfont.svg#verbsemibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'verbmedium';
+  src: url('../fonts/verbmedium-webfont.eot');
+  src: url('../fonts/verbmedium-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/verbmedium-webfont.woff2') format('woff2'),
+  url('../fonts/verbmedium-webfont.woff') format('woff'),
+  url('../fonts/verbmedium-webfont.ttf') format('truetype'),
+  url('../fonts/verbmedium-webfont.svg#verbmedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'verbbold';
+  src: url('../fonts/verbbold-webfont.eot');
+  src: url('../fonts/verbbold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/verbbold-webfont.woff2') format('woff2'),
+  url('../fonts/verbbold-webfont.woff') format('woff'),
+  url('../fonts/verbbold-webfont.ttf') format('truetype'),
+  url('../fonts/verbbold-webfont.svg#verbbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /***************************
 ****************************
 General Styles
 ****************************
 ***************************/
+
+body {
+  font-family: 'verbmedium';
+  font-size: 13px;
+  color: @blue-5;
+}
 
 .my-btn {
   text-align: center;
@@ -34,6 +86,7 @@ General Styles
   &.btn-1 {
     color: #000000;
     background-color: @blue-2;
+    font-size: 15px;
     height: 36px;
     line-height: 36px;
 
@@ -41,6 +94,10 @@ General Styles
       background-color: @blue-3;
     }
   }
+}
+
+.height-auto {
+  height: auto !important;
 }
 
 /***************************
@@ -52,6 +109,8 @@ Header Styles
 #header {
   background-color: @blue-1;
   height: 69px;
+  position: relative;
+  z-index: 100;
 
   .logo {
     float: left;
@@ -95,4 +154,73 @@ Get Started Styles
 #get-started {
   background-color: @blue-4;
   height: 464px;
+  position: relative;
+
+  div {
+    height: 100%;
+  }
+
+  .arrow {
+    bottom: -40px;
+    left: 50%;
+    margin-left: -1700px;
+    position: absolute;
+  }
+}
+
+#get-started-info {
+  padding-top: 43px;
+  position: relative;
+  top: -18px;
+
+  .person {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  
+  h2 {
+    font-family: 'verbbold';
+    color: #FFFFFF;
+    font-size: 47px;
+    line-height: 58px;
+    overflow: hidden;
+    margin: 0 0 22px 0;
+
+    > span {
+      background-color: @blue-6;
+      display: block;
+      float: left;
+      padding: 0 17px;
+
+      span {
+        color: @yellow-2;
+      }
+
+      & + span {
+        background-color: transparent;
+      }
+    }
+  }
+
+  h3 {
+    font-family: 'verbsemibold';
+    margin: 0 0 22px 0;
+    color: @blue-7;
+    border-top: 2px solid @blue-7;
+    border-bottom: 2px solid @blue-7;
+    float: left;
+    width: 43%;
+    font-size: 23px;
+    line-height: 28px;
+    padding: 10px 0;
+  }
+
+  > p {
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 0;
+    width: 58%;
+  }
 }
