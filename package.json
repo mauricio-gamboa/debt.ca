@@ -1,0 +1,23 @@
+{
+  "name": "debt.ca",
+  "version": "1.0.0",
+  "description": "Debs.ca Landing Pages",
+  "repository": {
+    "type": "git",
+    "url": "https://mauricio-gamboa@github.com/mauricio-gamboa/debt.ca.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mauricio-gamboa/debt.ca/issues"
+  },
+  "homepage": "https://github.com/mauricio-gamboa/debt.ca",
+    "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-less": "~0.11.4",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}

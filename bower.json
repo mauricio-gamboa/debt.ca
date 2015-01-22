@@ -1,0 +1,15 @@
+{
+  "name": "debt.ca",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mauricio-gamboa/debt.ca",
+  "authors": [
+    "Mauricio Gamboa <magalocr@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "angular": "~1.3.10",
+    "font-awesome": "~4.2.0"
+  }
+}
