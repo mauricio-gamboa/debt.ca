@@ -1,0 +1,98 @@
+/***************************
+****************************
+Variables
+****************************
+***************************/
+
+@blue-1: #1ca0ec;
+@blue-2: #8dd5ff;
+@blue-3: #7fc2e8;
+@blue-4: #42baff;
+
+@yellow-1: #fff200;
+
+/***************************
+****************************
+General Styles
+****************************
+***************************/
+
+.my-btn {
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+  text-transform: capitalize;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  i {
+    font-size: 20px;
+  }
+  
+  &.btn-1 {
+    color: #000000;
+    background-color: @blue-2;
+    height: 36px;
+    line-height: 36px;
+
+    &:hover {
+      background-color: @blue-3;
+    }
+  }
+}
+
+/***************************
+****************************
+Header Styles
+****************************
+***************************/
+
+#header {
+  background-color: @blue-1;
+  height: 69px;
+
+  .logo {
+    float: left;
+  }
+
+  .header-links {
+    float: right;
+    color: #FFFFFF;
+    margin-top: 16px;
+    line-height: 36px;
+
+    span {
+      color: @yellow-1;
+    }
+
+    .btn-1 {
+      width: 213px;
+      margin-left: 14px;
+    }
+  }
+}
+
+.logo {
+  margin: 0;
+
+  a {
+    background: url("../images/logo.png") no-repeat 0 0;
+    display: block;
+    height: 87px;
+    text-indent: -9999px;
+    width: 229px;
+  }
+}
+
+/***************************
+****************************
+Get Started Styles
+****************************
+***************************/
+
+#get-started {
+  background-color: @blue-4;
+  height: 464px;
+}
