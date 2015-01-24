@@ -4,12 +4,77 @@ Variables
 ****************************
 ***************************/
 
+@main-color: #3c5462;
+@main-color-hover: #25353e;
+
 @blue-1: #1ca0ec;
 @blue-2: #8dd5ff;
 @blue-3: #7fc2e8;
 @blue-4: #42baff;
+@blue-6: #002b44;
+@blue-7: #01446b;
+@blue-8: #168de9;
 
 @yellow-1: #fff200;
+@yellow-2: #fdb913;
+@yellow-3: #fcb21d;
+
+@green-1: #a9e754;
+@green-2: #005e20;
+@green-3: #3ca94e;
+
+@gray-1: #4b4747;
+@gray-2: #959595;
+@gray-3: #efefef;
+@gray-4: #506572;
+@gray-5: #d1d1d1;
+@gray-6: #5b5858;
+
+@medium: ~"(min-width: 993px) and (max-width: 1200px)";
+@small: ~"(min-width: 768px) and (max-width: 992px)";
+@xs: ~"(max-width: 767px)";
+
+/***************************
+****************************
+Fonts
+****************************
+***************************/
+
+@font-face {
+  font-family: 'verbsemibold';
+  src: url('../fonts/verbsemibold-webfont.eot');
+  src: url('../fonts/verbsemibold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/verbsemibold-webfont.woff2') format('woff2'),
+  url('../fonts/verbsemibold-webfont.woff') format('woff'),
+  url('../fonts/verbsemibold-webfont.ttf') format('truetype'),
+  url('../fonts/verbsemibold-webfont.svg#verbsemibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'verbmedium';
+  src: url('../fonts/verbmedium-webfont.eot');
+  src: url('../fonts/verbmedium-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/verbmedium-webfont.woff2') format('woff2'),
+  url('../fonts/verbmedium-webfont.woff') format('woff'),
+  url('../fonts/verbmedium-webfont.ttf') format('truetype'),
+  url('../fonts/verbmedium-webfont.svg#verbmedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'verbbold';
+  src: url('../fonts/verbbold-webfont.eot');
+  src: url('../fonts/verbbold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/verbbold-webfont.woff2') format('woff2'),
+  url('../fonts/verbbold-webfont.woff') format('woff'),
+  url('../fonts/verbbold-webfont.ttf') format('truetype'),
+  url('../fonts/verbbold-webfont.svg#verbbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /***************************
 ****************************
@@ -17,10 +82,17 @@ General Styles
 ****************************
 ***************************/
 
+body {
+  font-family: 'verbmedium';
+  font-size: 13px;
+  color: @main-color;
+}
+
 .my-btn {
-  text-align: center;
-  display: inline-block;
+  border: medium none;
   border-radius: 5px;
+  display: inline-block;
+  text-align: center;
   text-transform: capitalize;
 
   &:hover {
@@ -34,12 +106,119 @@ General Styles
   &.btn-1 {
     color: #000000;
     background-color: @blue-2;
+    font-size: 15px;
     height: 36px;
     line-height: 36px;
 
     &:hover {
       background-color: @blue-3;
     }
+  }
+
+  &.btn-2 {
+    background: url("../images/g-1.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 1px 1px 2px -1px #000000;
+    color: #ffffff;
+    height: 49px;
+    line-height: 49px;
+    padding: 0 25px;
+
+    &:hover {
+      background-position: 0 -49px;
+    }
+  }
+}
+
+.height-auto {
+  height: auto !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'verbsemibold';
+}
+
+.green-list {
+  font-size: 14px;
+  font-family: 'verbmedium';
+  margin: 0;
+
+  @media @medium {
+    font-size: 12px;
+  }
+
+  li {
+    background: url("../images/ico-1.png") no-repeat 0 50%;
+    padding-left: 23px;
+  }
+}
+
+a, input {
+  color: @main-color;
+  
+  &:focus {
+    outline:none;
+  }
+  
+  &::-moz-focus-inner {
+    border:0;
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: @main-color-hover;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.show-xs,
+.show-s,
+.show-m,
+.show-xl {
+  display: none;
+}
+
+@media @medium {
+  .hide-m {
+    display: none !important;
+  }
+
+  .show-m {
+    display: block;
+  }
+}
+
+@media @small {
+  .hide-s {
+    display: none !important;
+  }
+
+  .show-s {
+    display: block;
+  }
+}
+
+@media @xs {
+  .hide-xs {
+    display: none !important;
+  }
+
+  .show-xs {
+    display: block;
+  }
+}
+
+input[type="text"] {
+  background: url("../images/g-2.png") repeat-x 0 0;
+  border: 1px solid @gray-5;
+  border-radius: 5px;
+  height: 34px;
+  padding: 0 10px;
+
+  &:focus {
+    border-color: @blue-8;
+    box-shadow: 0 0 5px -1px @blue-8;
   }
 }
 
@@ -52,9 +231,20 @@ Header Styles
 #header {
   background-color: @blue-1;
   height: 69px;
+  position: relative;
+  z-index: 100;
 
   .logo {
     float: left;
+
+    a {
+      box-shadow: 0 -50px 37px -3px #000000;
+    }
+
+    @media @xs {
+      float: none;
+      text-align: center;
+    }
   }
 
   .header-links {
@@ -79,10 +269,18 @@ Header Styles
 
   a {
     background: url("../images/logo.png") no-repeat 0 0;
-    display: block;
+    display: inline-block;
     height: 87px;
     text-indent: -9999px;
     width: 229px;
+  }
+
+  &.logo-gray {
+    a {
+      background: url("../images/logo-gray.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+      height: 37px;
+      width: 128px;
+    }
   }
 }
 
@@ -95,4 +293,523 @@ Get Started Styles
 #get-started {
   background-color: @blue-4;
   height: 464px;
+  position: relative;
+
+  div {
+    height: 100%;
+
+    @media @xs {
+      height: auto;
+    }
+  }
+
+  .arrow {
+    bottom: -40px;
+    left: 50%;
+    margin-left: -1700px;
+    position: absolute;
+
+    @media @small {
+      margin-left: -1800px;
+    }
+  }
+}
+
+#get-started-info {
+  padding-top: 43px;
+  position: relative;
+  top: -18px;
+
+  .person {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    @media @xs {
+      position: static;
+    }
+  }
+
+  @media @xs {
+    text-align: center;
+  }
+  
+  h2 {
+    font-family: 'verbbold';
+    color: #FFFFFF;
+    font-size: 47px;
+    line-height: 58px;
+    overflow: hidden;
+    margin: 0 0 22px 0;
+
+    @media @medium {
+      margin-bottom: 10px;
+    }
+
+    @media @small {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    @media @xs {
+      font-size: 28px;
+    }
+
+    > span {
+      background-color: @blue-6;
+      display: block;
+      float: left;
+      padding: 0 17px;
+
+      @media @xs {
+        float: none;
+      }
+
+      span {
+        color: @yellow-2;
+      }
+
+      & + span {
+        background-color: transparent;
+      }
+    }
+  }
+
+  h3 {
+    margin: 0 0 22px 0;
+    color: @blue-7;
+    border-top: 2px solid @blue-7;
+    border-bottom: 2px solid @blue-7;
+    float: left;
+    width: 43%;
+    font-size: 23px;
+    line-height: 28px;
+    padding: 10px 0;
+
+    @media @medium {
+      width: 47%;
+      margin-bottom: 10px;
+    }
+
+    @media @small {
+      width: 83%;
+      margin-bottom: 10px;
+    }
+
+    @media @xs {
+      display: none;
+    }
+  }
+
+  > p {
+    color: #FFFFFF;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 0;
+    width: 58%;
+
+    @media @small {
+      width: 100%;
+    }
+
+    @media @xs {
+      display: none;
+    }
+  }
+}
+
+#get-started-form {
+  background-color: @green-1;
+  box-shadow: 0 6px 20px -11px #000000;
+  padding: 7px;
+
+  h4 {
+    color: @green-2;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 27px;
+    font-family: 'verbbold';
+    margin-bottom: 15px;
+
+    i {
+      color: @green-3;
+      font-size: 20px;
+    }
+  }
+
+  .step-form {
+    background-color: #FFFFFF;
+    height: auto;
+
+    h5 {
+      font-size: 23px;
+      text-transform: capitalize;
+    }
+
+    label {
+      margin: 0;
+    }
+
+    .btn-2 {
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+
+    &.step-form-first {
+      text-align: center;
+
+      > div:not(.form-bottom) {
+        background: url("../images/text-1.png") no-repeat scroll 40px 100%;
+        padding: 30px 0 45px;
+      }
+
+      h5 {
+        margin-bottom: 25px;
+      }
+
+      .form {
+        width: 298px;
+        margin: 0 auto;
+      }
+
+      label, input, button {
+        display: block;
+        width: 100%;
+      }
+
+      label {
+        color: @gray-6;
+        font-size: 15px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
+
+/***************************
+****************************
+Miscellaneous Styles
+****************************
+***************************/
+
+#miscellaneous {
+  color: #FFFFFF;
+  background-color: @main-color;
+  padding: 25px 0 15px;
+
+  h2 {
+    margin: 0 0 10px 0;
+
+    @media @small {
+      font-size: 20px;
+    }
+  }
+
+  .green-list {
+    overflow: hidden;
+    
+    li {
+      float: left;
+      width: 50%;
+      line-height: 40px;
+
+      @media @small, @xs {
+        width: 100%;
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+.testimonial {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  @media @xs {
+    padding-top: 19px;
+    margin-top: 19px;
+    border-top: 1px solid @gray-4;
+  }
+
+  img {
+    box-shadow: 0 0 2px 0 #000000;
+    float: left;
+    margin-right: 10px;
+  }
+
+  blockquote {
+    border: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 350px;
+
+    @media @medium {
+      width: 280px;
+    }
+
+    @media @small {
+      width: 265px;
+    }
+
+    @media @xs {
+      width: auto;
+      float: none;
+    }
+
+    div {
+      background: 
+      url("../images/quotes-1.png") no-repeat 0 0,
+      url("../images/quotes-2.png") no-repeat 100% 0;
+      padding-left: 29px;
+      padding-right: 36px;
+
+      p {
+        font-size: 13px;
+        line-height: 21px;
+        margin: 0;
+        font-style: italic;
+        font-weight: bold;
+
+        cite {
+          font-style: normal;
+        }
+      }
+    }
+  }
+}
+
+/***************************
+****************************
+How It Works Styles
+****************************
+***************************/
+
+#steps {
+  text-align: center;
+  padding: 25px 0;
+
+  h2 {
+    margin: 0 0 20px 0;
+  }
+
+  .step {
+    float: left;
+    width: 33.33%;
+    padding: 0 34px;
+
+    img {
+      margin-bottom: 22px;
+    }
+
+    h3 {
+      color: @blue-4;
+      text-transform: uppercase;
+      font-size: 16px;
+      margin: 0 0 22px 0;
+    }
+
+    p {
+      margin: 0;
+      color: @gray-1;
+      font-size: 15px;
+      line-height: 21px;
+    }
+  }
+}
+
+/***************************
+****************************
+Tabs Styles
+****************************
+***************************/
+
+#tabs {
+  .tab-content {
+    padding: 35px 0;
+    min-height: 515px;
+
+    @media @xs {
+      min-height: 0;
+    }
+
+    h4 {
+      margin: 0 0 15px 0;
+      font-size: 21px;
+      line-height: 28px;
+    }
+
+    p {
+      line-height: 23px;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.tabs-menu {
+  margin: 0;
+  background: url("../images/sep-1.png") no-repeat 100% 0;
+  padding: 35px 0;
+  min-height: 515px;
+
+  @media @xs {
+    min-height: 0;
+  }
+
+  li {
+    a {
+      line-height: normal;
+      display: block;
+      padding: 15px 30px;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      @media @small {
+        padding: 15px;
+        font-size: 13px;
+      }
+    }
+
+    &.active {
+      a {
+        background-color: @yellow-3;
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+/***************************
+****************************
+Miscellaneous Bottom Styles
+****************************
+***************************/
+
+#miscellaneous-bottom {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: @main-color;
+  padding: 19px 0;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+
+  .btn-2 {
+    margin: 0 20px;
+  }
+
+  @media @xs {
+    span {
+      display: block;
+    }
+  }
+}
+
+/***************************
+****************************
+Footer Styles
+****************************
+***************************/
+
+#footer {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: @gray-2;
+  font-size: 11px;
+  line-height: 20px;
+
+  a {
+    color: @gray-2;
+
+    &:hover {
+      color: @gray-2;        
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 20px;
+
+    @media @xs {
+      display: inline-block;
+    }
+  }
+
+  @media @xs {
+    address {
+      border-bottom: 1px solid @gray-3;
+    }
+  }
+}
+
+.footer-section {
+  padding: 35px 0;
+  margin: 0;
+
+  @media @xs {
+    text-align: center;
+    padding: 15px 0;
+  }
+}
+
+#footer-bottom {
+  border-top: 1px solid @gray-3;
+  padding: 15px 0;
+
+  > div {
+    float: left;
+
+    & + div {
+      float: right;
+    }
+  }
+
+  @media @xs {
+    text-align: center;
+
+    > div {
+      float: none;
+
+      & + div {
+        float: none;
+      }
+    }
+  }
+}
+
+/***************************
+****************************
+Get Help Styles
+****************************
+***************************/
+
+#get-help {
+  background-color: @green-1;
+  text-align: center;
+  padding: 35px 0 15px 0;
+  font-family: 'verbbold';
+
+  h4 {
+    margin: 0;
+    font-size: 17px;
+    color: #000000;
+    text-transform: uppercase;
+  }
+}
+
+.phone {
+  color: #FFFFFF;
+  font-size: 34px;
 }
