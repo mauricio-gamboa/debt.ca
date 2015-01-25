@@ -18,10 +18,12 @@ Variables
 @yellow-1: #fff200;
 @yellow-2: #fdb913;
 @yellow-3: #fcb21d;
+@yellow-4: rgba(252, 178, 29, 0.8);
 
 @green-1: #a9e754;
 @green-2: #005e20;
 @green-3: #3ca94e;
+@green-4: #38d552;
 
 @gray-1: #4b4747;
 @gray-2: #959595;
@@ -29,10 +31,37 @@ Variables
 @gray-4: #506572;
 @gray-5: #d1d1d1;
 @gray-6: #5b5858;
+@gray-7: #f0f0f0;
+@gray-8: #d9dada;
+@gray-9: #515151;
+@gray-10: #363636;
 
+@red-1: red;
+
+@large: ~"(min-width: 1200px)";
 @medium: ~"(min-width: 993px) and (max-width: 1200px)";
 @small: ~"(min-width: 768px) and (max-width: 992px)";
 @xs: ~"(max-width: 767px)";
+
+/***************************
+****************************
+Animations
+****************************
+***************************/
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-spinner {
+  animation: rotation 2s infinite steps(8);
+}
 
 /***************************
 ****************************
@@ -126,6 +155,10 @@ body {
     &:hover {
       background-position: 0 -49px;
     }
+
+    i {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -209,7 +242,8 @@ a, input {
   }
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"] {
   background: url("../images/g-2.png") repeat-x 0 0;
   border: 1px solid @gray-5;
   border-radius: 5px;
@@ -219,6 +253,80 @@ input[type="text"] {
   &:focus {
     border-color: @blue-8;
     box-shadow: 0 0 5px -1px @blue-8;
+  }
+}
+
+.select-wrapper {
+  background: url("../images/select.png") no-repeat scroll 100% 0 rgba(0, 0, 0, 0);
+  border: 1px solid @gray-5;
+  border-radius: 5px;
+  height: 36px;
+  width: 100%;
+
+  &.error {
+    border-color: @red-1;
+    box-shadow: 0 0 5px -1px @red-1;
+  }
+
+  select {
+    height: 36px;
+    padding-left: 21px;
+    width: 100%;
+
+    -moz-appearance: menulist-text;
+    -webkit-appearance: menulist-text;
+    appearance: menulist-text;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    box-shadow: none;
+    outline: medium none;
+    padding-right: 39px;
+    width: 100%;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+  }
+}
+
+.checkbox-wrapper {
+  display: inline-block;
+  height: 15px !important;
+  margin: 0;
+  min-height: 0;
+  padding: 0;
+  position: relative;
+  width: 15px;
+
+  &.error {
+    label {
+      border-color: @red-1;
+      box-shadow: 0 0 5px -1px @red-1;
+    }
+  }
+
+  input[type="checkbox"] {
+    margin: 0;
+    visibility: hidden;
+
+    &:checked + label {
+      background: url("../images/cb.png") no-repeat 0 0;
+      border: none;
+    }
+  }
+
+  label {
+    border: 1px solid @gray-5;
+    border-radius: 2px;
+    cursor: pointer;
+    display: block;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 15px;
+    z-index: 1;
   }
 }
 
@@ -295,9 +403,11 @@ Get Started Styles
   height: 464px;
   position: relative;
 
-  div {
-    height: 100%;
+  @media @xs {
+    height: auto;
+  }
 
+  div {
     @media @xs {
       height: auto;
     }
@@ -320,20 +430,23 @@ Get Started Styles
   position: relative;
   top: -18px;
 
+  @media @xs {
+    text-align: center;
+    position: static;
+    top: auto;
+    padding-top: 25px;
+  }
+
   .person {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -85px;
 
     @media @xs {
       position: static;
     }
   }
 
-  @media @xs {
-    text-align: center;
-  }
-  
   h2 {
     font-family: 'verbbold';
     color: #FFFFFF;
@@ -420,8 +533,13 @@ Get Started Styles
 
 #get-started-form {
   background-color: @green-1;
-  box-shadow: 0 6px 20px -11px #000000;
+  box-shadow: 0 15px 25px -5px #000;
   padding: 7px;
+
+  @media @xs {
+    position: relative;
+    z-index: 10;
+  }
 
   h4 {
     color: @green-2;
@@ -431,11 +549,14 @@ Get Started Styles
     font-family: 'verbbold';
     margin-bottom: 15px;
 
+    @media @xs {
+      font-size: 24px;
+    }
+
     i {
-      color: @green-3;
-      float: right;
+      color: #3ca94e;
+      vertical-align: middle;
       font-size: 20px;
-      margin-top: 5px;
     }
   }
 
@@ -443,9 +564,21 @@ Get Started Styles
     background-color: #FFFFFF;
     height: auto;
 
+    .form {
+      &.ng-submitted {
+        input {
+          &.ng-invalid {
+            border-color: @red-1;
+            box-shadow: 0 0 5px -1px @red-1;
+          }
+        }
+      }
+    }
+
     h5 {
       font-size: 23px;
       text-transform: capitalize;
+      line-height: normal;
     }
 
     label {
@@ -458,25 +591,63 @@ Get Started Styles
     }
 
     &.step-form-first {
+      padding-bottom: 109px;
+      position: relative;
       text-align: center;
+
+      @media @xs {
+        padding-bottom: 0;
+      }
 
       > div:not(.form-bottom) {
         background: url("../images/text-1.png") no-repeat scroll 40px 100%;
         padding: 30px 0 45px;
+
+        @media @medium {
+          background-position: 10px 100%;
+        }
+
+        @media @small {
+          background-position: 3px 100%;
+        }
+
+        @media @xs {
+          background: none;
+          padding: 30px 0;
+        }
       }
 
       h5 {
-        margin-bottom: 25px;
+        margin: 0 0 25px 0;
       }
 
       .form {
         width: 298px;
         margin: 0 auto;
+
+        @media @medium {
+          width: 288px;
+        }
+
+        @media @small {
+          width: 278px;
+        }
+
+        @media @xs {
+          width: 100%;
+          padding: 0 19px;
+        }
       }
 
       label, input, button {
         display: block;
         width: 100%;
+      }
+
+      @media @xs {
+        .btn-2 {
+          font-size: 19px;
+        }
       }
 
       label {
@@ -486,8 +657,204 @@ Get Started Styles
         margin-bottom: 10px;
       }
 
-      input[type="text"] {
+      input[type="text"],
+      input[type="email"] {
         margin-bottom: 12px;
+      }
+
+      .form-bottom {
+        background-color: @gray-7;
+        padding: 15px 0;
+        overflow: hidden;
+        text-align: left;
+        font-family: 'verbbold';
+        color: #000000;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        height: auto;
+        line-height: normal;
+
+        @media @xs {
+          position: static;
+        }
+
+        h5 {
+          background: url("../images/arrow-2.png") no-repeat 100% 0;
+          text-transform: uppercase;
+          color: #000000;
+          height: 30px;
+          line-height: 30px;
+          margin: 0;
+          float: left;
+          padding: 0 15px 0 12px;
+          font-size: 14px;
+
+          @media @medium, @small {
+            font-size: 13px;
+          }
+
+          @media @xs {
+            display: none;
+          }
+        }
+
+        > div {
+          float: left;
+          height: auto;
+          width: 190px;
+          margin-left: 15px;
+          font-size: 15px;
+
+          @media @medium {
+            width: 190px;
+            margin-left: 5px;
+          }
+
+          @media @small {
+            font-size: 13px;
+            width: 174px;
+            margin-left: 5px;
+          }
+
+          @media @xs {
+            width: 100%;
+            text-align: center;
+            float: none;
+            margin: 0;
+          }
+
+          span {
+            display: block;
+            font-size: 13px;
+            font-family: 'verbmedium';
+          }
+        }
+      }
+    }
+
+    &.step-form-second {
+      text-align: center;
+      height: 395px;
+      padding-top: 65px;
+
+      .fa-spinner {
+        color: @gray-9;
+        font-size: 70px;
+        margin-top: 35px;
+        margin-bottom: 35px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 23px;
+      }
+    }
+
+    &.step-form-last {
+      height: 395px;
+      padding: 32px 25px;
+
+      @media @xs {
+        height: auto;
+      }
+
+      .form-section:not(.cb) {
+        margin-bottom: 10px;
+
+        @media @xs {
+          margin-bottom: 0;
+        }
+
+        > div {
+          float: left;
+          width: 50%;
+          padding-right: 5px;
+
+          @media @xs {
+            padding: 0;
+            width: 100%;
+            margin-bottom: 10px;
+          }
+
+          & + div {
+            padding-right: 0;
+            padding-left: 5px;
+
+            @media @xs {
+              padding: 0;
+            }
+          }
+
+          label {
+            color: #000000;
+            text-transform: uppercase;
+            display: block;
+
+            span {
+              cursor: pointer;
+
+              i {
+                color: @green-4;
+                font-size: 16px;
+                vertical-align: middle;
+              }
+            }
+          }
+
+          input[type="text"],
+          input[type="email"] {
+            width: 100%;
+            height: 36px;
+          }
+        }
+      }
+
+      .form-section {
+        &.cb {
+          margin-top: 17px;
+          margin-bottom: 30px;
+          position: relative;
+          padding-left: 22px;
+
+          .checkbox-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+
+          span {
+            color: @gray-10;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            display: block;
+
+            @media @small {
+              font-size: 10px;
+            }
+
+            a {
+              color: @green-4;
+            }
+          }
+        }
+      }
+
+      .btn-2 {
+        width: 100%;
+
+        @media @small {
+          font-size: 18px;
+        }
+
+        @media @xs {
+          font-size: 13px;
+
+          i {
+            vertical-align: middle;
+          }
+        }
       }
     }
   }
@@ -504,11 +871,17 @@ Miscellaneous Styles
   background-color: @main-color;
   padding: 25px 0 15px;
 
+  @media  @xs {
+    padding: 65px 0 15px;
+    position: relative;
+    top: -40px;
+  }
+
   h2 {
     margin: 0 0 10px 0;
 
-    @media @small {
-      font-size: 20px;
+    @media @xs {
+      font-size: 21px;
     }
   }
 
@@ -591,9 +964,17 @@ How It Works Styles
 ****************************
 ***************************/
 
-#steps {
+.steps {
   text-align: center;
   padding: 25px 0;
+
+  .owl-controls {
+    margin-top: 30px;
+  }
+
+  @media @xs {
+    padding: 0;
+  }
 
   h2 {
     margin: 0 0 20px 0;
@@ -603,6 +984,11 @@ How It Works Styles
     float: left;
     width: 33.33%;
     padding: 0 34px;
+
+    @media @xs {
+      float: none;
+      width: 100%;
+    }
 
     img {
       margin-bottom: 22px;
@@ -631,12 +1017,17 @@ Tabs Styles
 ***************************/
 
 #tabs {
+  @media @xs {
+    margin-top: 30px;
+  }
+  
   .tab-content {
     padding: 35px 0;
     min-height: 515px;
 
     @media @xs {
       min-height: 0;
+      padding: 20px 0;
     }
 
     h4 {
@@ -656,14 +1047,43 @@ Tabs Styles
   }
 }
 
+.tabs-xs {
+  background-color: @gray-7;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 29px;
+  border-radius: 25px;
+  font-size: 15px;
+
+  span {
+    cursor: pointer;
+
+    i {
+      color: @yellow-3;
+      font-size: 30px;
+      vertical-align: middle;
+    }
+  }
+}
+
 .tabs-menu {
   margin: 0;
   background: url("../images/sep-1.png") no-repeat 100% 0;
   padding: 35px 0;
   min-height: 515px;
 
+  @media @large, @medium, @small {
+    &.collapse {
+      display: block !important;
+      visibility: visible !important;
+    }
+  }
+
   @media @xs {
     min-height: 0;
+    padding: 0;
+    background: @yellow-4;
+    margin: 0 30px;
   }
 
   li {
@@ -675,11 +1095,20 @@ Tabs Styles
 
       &:hover {
         text-decoration: none;
+
+        @media @xs {
+          color: @main-color;
+        }
       }
 
       @media @small {
         padding: 15px;
         font-size: 13px;
+      }
+
+      @media @xs {
+        padding: 15px;
+        font-size: 12px;
       }
     }
 
@@ -734,8 +1163,7 @@ Footer Styles
     color: @gray-2;
 
     &:hover {
-      color: @gray-2;        
-      text-decoration: underline;
+      color: @gray-2;
     }
   }
 
@@ -814,4 +1242,29 @@ Get Help Styles
 .phone {
   color: #FFFFFF;
   font-size: 34px;
+}
+
+/***************************
+****************************
+Owl Carousel Styles
+****************************
+***************************/
+
+.owl-controls {
+  .owl-pagination {
+    .owl-page {
+      span {
+        background-color: @gray-8;
+        margin: 0 7px;
+        height: 16px;
+        width: 16px;
+      }
+
+      &.active {
+        span {
+          background-color: @yellow-3;
+        }
+      }
+    }
+  }
 }
