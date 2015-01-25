@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="Debt">
 <head>
   <title>Debt.ca Landing 1</title>
   <meta charset="UTF-8">
@@ -42,20 +42,84 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-          <div id="get-started-form">
-            <h4>Get Started Now <i class="fa fa-lock"></i></h4>
-            <div class="step-form step-form-first">
+          <div id="get-started-form" ng-controller="GetStartedCtrl">
+            <h4>{{title}} <i class="fa fa-lock"></i></h4>
+            <div class="step-form step-form-first" ng-show="showFirst">
               <div>
                 <h5>See If You Qualitfy For <br>Debt Assistance!</h5>
-                <form class="form" action="">
+                <form name="qualifyForm" ng-submit="submitQualify(qualifyForm.$valid)" class="form" role="form" novalidate>
                   <fieldset>
-                    <label for="">Enter your Postal Code</label>
-                    <input type="text">
+                    <label for="code">Enter your Postal Code</label>
+                    <input id="code" name="code" type="text" ng-model="formData.code" required>
                     <button class="my-btn btn-2" type="submit">See If You Qualify! <i class="fa fa-arrow-circle-right"></i></button>
                   </fieldset>
                 </form>
               </div>
-              <div class="form-bottom"></div>
+              <div class="form-bottom">
+                <h5>You're not alone</h5>
+                <div>
+                  Help with $15,000 in debt
+                  <span>4 minutes ago in ON</span>
+                </div>
+              </div>
+            </div>
+            <div class="step-form step-form-second" ng-show="showSpinner">
+              <h5>Checcking to see if <br>you qualify. Please wait.</h5>
+              <i class="fa fa-spinner"></i>
+              <p>Searching...</p>
+            </div>
+            <div class="step-form step-form-last" ng-show="showLast">
+              <form name="getEstimateForm" ng-submit="getEstimate(getEstimateForm.$valid)" class="form" role="form" novalidate>
+                <fieldset class="clearfix form-section">
+                  <div>
+                    <label for="name">First Name</label>
+                    <input type="text" id="name" name="name" ng-model="estimateData.name" required>
+                  </div>
+                  <div>
+                    <label for="last">Last Name</label>
+                    <input type="text" id="last" name="last" ng-model="estimateData.last" required>
+                  </div>
+                </fieldset>
+                <fieldset class="clearfix form-section">
+                  <div>
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" ng-model="estimateData.phone">
+                  </div>
+                  <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" ng-model="estimateData.email" required>
+                  </div>
+                </fieldset>
+                <fieldset class="clearfix form-section">
+                  <div>
+                    <label for="province">Province</label>
+                    <div class="select-wrapper" ng-class="{error:getEstimateForm.$submitted && getEstimateForm.province.$invalid}">
+                      <select id="province" name="province" ng-model="estimateData.province" required>
+                        <option value="British Columbia">British Columbia</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="debt">
+                      Debt Amount 
+                      <span data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popover><i class="fa fa-question-circle"></i></span>
+                    </label>
+                    <div class="select-wrapper" ng-class="{error:getEstimateForm.$submitted && getEstimateForm.debt.$invalid}">
+                      <select id="debt" name="debt" ng-model="estimateData.debt" required>
+                        <option value="$90,000 - $99,999">$90,000 - $99,999</option>
+                      </select>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset class="cb clearfix form-section">
+                  <div class="checkbox-wrapper" ng-class="{error:getEstimateForm.$submitted && getEstimateForm.terms.$invalid}">
+                    <input type="checkbox" id="terms" name="terms" ng-model="estimateData.terms" required>
+                    <label for="terms"></label>
+                  </div>
+                  <span>I accept the terms of service and agree to receive email regarding my debt from Debt.ca &amp; our debt partners, including tips and promotions. You may unsubscribe at any time. See our <a href="">Privacy Policy</a> and <a href="">Terms</a>.</span>
+                </fieldset>
+                <button class="my-btn btn-2" type="submit">get your free estimate <i class="fa fa-arrow-circle-right"></i></button>
+              </form>
             </div>
           </div>
         </div>
@@ -91,11 +155,11 @@
       </div>
     </div>
   </section>
-  <section id="how-it-works" class="hide-xs">
-    <div class="container">
+  <section id="how-it-works">
+    <div class="container hide-xs">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div id="steps">
+          <div class="steps">
             <h2>How It Works</h2>
             <div class="clearfix">
               <div class="step">
@@ -118,22 +182,45 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="steps show-xs">
+            <h2>How It Works</h2>
+            <div class="owl-carousel" owl-single>
+              <div class="step">
+                <img src="public/images/step-1.png" alt="">
+                <h3>Calculate youR debts</h3>
+                <p>Examine your current situation at no charge or obligation. Get your free online savings quote today!</p>
+              </div>
+              <div class="step">
+                <img src="public/images/step-2.png" alt="">
+                <h3>REDUCE YOUR DEBT</h3>
+                <p>Reduce up to 60% of your debt and combine all of your payments into one affordable monthly payment.</p>
+              </div>
+              <div class="step">
+                <img src="public/images/step-3.png" alt="">
+                <h3>BECOME DEBT FREE</h3>
+                <p>Making lower monthly payments will allow you to get out of debt in as little as 24 - 48 months.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="tabs">
+  <section id="tabs" ng-controller="TabsCtrl">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-4 col-md-4 col-4">
-          <ul class="list-unstyled tabs-menu" role="tablist">
-            <li role="presentation" class="active">
-              <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">Canadian Debt Relief</a>
+          <div class="tabs-xs clearfix show-xs">
+            {{currentTab}}
+            <span class="collapsed pull-right" data-toggle="collapse" data-target="#tabs-menu"><i class="fa fa-bars"></i></span>
+          </div>
+          <ul id="tabs-menu" class="list-unstyled tabs-menu collapse" role="tablist">
+            <li role="presentation" ng-repeat="tab in tabs" ng-class="{active:$first}">
+              <a ng-click="changeTitle($index)" href="#tab-{{$index + 1}}" aria-controls="tab-{{$index + 1}}" role="tab" data-toggle="tab">{{tab}}</a>
             </li>
-            <li role="presentation">
-              <a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">How Does It Work?</a>
-            </li>
-            <li role="presentation"><a href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab">What Types of Debt Qualify?</a></li>
-            <li role="presentation"><a href="#tab-4" aria-controls="tab-4" role="tab" data-toggle="tab">Why Choose Debt.ca?</a></li>
-            <li role="presentation"><a href="#tab-5" aria-controls="tab-5" role="tab" data-toggle="tab">Why Should I Avoid Bankruptcy?</a></li>
-            <li role="presentation"><a href="#tab-6" aria-controls="tab-6" role="tab" data-toggle="tab">How Do I Get Started?</a></li>
           </ul>
         </div>
         <div class="col-xs-12 col-sm-8 col-md-8 col-8">
@@ -157,7 +244,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-12">
-          <span>See if you qualify,</span> <a href="" class="my-btn btn-2">Fill out the form</a> <span>to get started!</span>
+          <span>See if you qualify,</span> <a href="#get-started-form" du-smooth-scroll class="my-btn btn-2">Fill out the form</a> <span>to get started!</span>
         </div>
       </div>
     </div>
@@ -193,6 +280,7 @@
       </div>
     </div>
   </footer>
-  <script src="public/js/libs.js"></script>
+  <script src="public/js/libs.min.js"></script>
+  <script src="public/js/app.min.js"></script>
 </body>
 </html>
