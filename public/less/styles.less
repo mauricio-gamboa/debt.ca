@@ -1128,6 +1128,25 @@ How It Works Styles
 ****************************
 ***************************/
 
+#how-it-works {
+  padding-top: 25px;
+  text-align: center;
+
+  @media @xs {
+    padding-top: 0;
+  }
+
+  h2 {
+    margin: 0 0 20px 0;
+  }
+
+  img {
+    @media @small {
+      width: 579px;
+    }
+  }
+}
+
 .steps {
   text-align: center;
   padding: 25px 0;
@@ -1138,10 +1157,6 @@ How It Works Styles
 
   @media @xs {
     padding: 0;
-  }
-
-  h2 {
-    margin: 0 0 20px 0;
   }
 
   .step {
