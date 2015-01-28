@@ -1338,8 +1338,10 @@ Footer Styles
   font-size: 11px;
   line-height: 20px;
 
-  a {
+  a,
+  span {
     color: @gray-2;
+    cursor: pointer;
 
     &:hover {
       color: @gray-2;
@@ -1394,6 +1396,54 @@ Footer Styles
       & + div {
         float: none;
       }
+    }
+  }
+}
+
+.modal-content {
+  .close-modal {
+    background: url("../images/close.png") no-repeat 0 0;
+    width: 57px;
+    height: 57px;
+    border: none;
+    position: absolute;
+    right: -28px;
+    top: -28px;
+  }
+}
+
+.terms-privacy {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #000000;
+
+  > div {
+    max-height: 900px;
+    overflow-y: scroll;
+  }
+  
+  h2 {
+    margin: 0 0 15px 0;
+    padding-bottom: 15px;
+    color: @blue-4;
+    border-bottom: 2px solid @blue-4;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 12px;
+    color: #000000;
+    line-height: 18px;
+
+    span {
+      color: @blue-2;
     }
   }
 }
