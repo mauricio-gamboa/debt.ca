@@ -1401,14 +1401,24 @@ Footer Styles
 }
 
 .modal-content {
-  .close-modal {
-    background: url("../images/close.png") no-repeat 0 0;
-    width: 57px;
-    height: 57px;
-    border: none;
+  .close {  
     position: absolute;
-    right: -28px;
-    top: -28px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    float: none;
+    z-index: 10;
+
+    @media @large, @medium, @small {
+      background: url("../images/close.png") no-repeat 0 0;
+      width: 57px;
+      height: 57px;
+      border: none;
+      right: -28px;
+      top: -28px;
+      opacity: 1;
+      text-indent: 1000px;
+    }
   }
 }
 
